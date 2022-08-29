@@ -1,8 +1,8 @@
 const express=require('express');
 const app=express();
-
 const nodemailer = require('nodemailer');
 const https = require('https')
+const commands=require('./util/commonSQL.js');
 var host = 'https://hiramailer.herokuapp.com/em';
 
 const path = require('path')
@@ -20,7 +20,13 @@ app.use(
   app.get('/test',(req,res)=>{
       res.send("the page is working")
   })
-  app.get('/service',(req,res,next)=>{
+
+app.get('/service',(req,res)=>{
+
+    commands.selectAll(res,'BOP');   
+})
+
+  app.get('/service2',(req,res,next)=>{
       let service={service:[
           {
             id:"234",
