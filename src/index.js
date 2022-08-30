@@ -22,7 +22,6 @@ app.use(
   })
 
 app.get('/service',(req,res)=>{
-
     commands.selectAll(res,'BOP');   
 })
 
@@ -47,8 +46,8 @@ app.get('/service',(req,res)=>{
             image:"icon.png"
           }
           ]}
-          
-          res.send(service)
+          var document='Muservcie'
+          res.send({[document]:service})
       
   })
   app.get('/document',(req,res,next)=>{

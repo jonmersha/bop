@@ -1,39 +1,50 @@
 
-CREATE TABLE DOCUMENTS(
-  DOC_ID INT PRIMARY KEY auto_increment,
-  DOC_NAME VARCHAR(200),
-  DOC_DESCRIPTION VARCHAR(500),
-  IS_PUBLIC BOOLEAN,
-  UPLOAD_DATE DATE
+CREATE TABLE Document(
+  documentID INT PRIMARY KEY auto_increment,
+  documentName VARCHAR(200),
+  docuemntDescription VARCHAR(500),
+  documentImagePath VARCHAR(50),
+  isPublic BOOLEAN,
+  docuemntCategory varchar(50),
+  uploadDate DATE
+);
+create table DocuemntSection(
+  docuemntID int,
+  sectionId int,
+  sectionName varchar(200),
+  sectionDescription varchar(200);
+  docuemntPath VARCHAR(50)
+)
+
+CREATE TABLE DocuemntToBranchOperationLink(
+  docuemntID INT,
+  serviceID  INT
 );
 
-CREATE TABLE DOC_TO_BOP(
-  DOC_ID INT,
-  BOP_ID INT
-);
 
-CREATE TABLE BOP(
-OP_ID INT PRIMARY KEY auto_increment,
-OP_NAME VARCHAR(100),
-OP_DESC VARCHAR(100),
-OP_CREATE_TIME TIMESTAMP,
-OP_CREAR INT
+CREATE TABLE branch_operation(
+serviceID INT PRIMARY KEY auto_increment,
+serviceName VARCHAR(100),
+serviceDescritpyion VARCHAR(100),
+serviceIconPath VARCHAR(50),
+serviceCreateTime TIMESTAMP,
+serviceCreator INT
 );
 
 
 
-CREATE TABLE LOAN_TYPE(
-ID INT PRIMARY KEY auto_increment,
-OP_ID INT, 
-LOAN_NAME VARCHAR(100),
-PRODUCT_LOGO VARCHAR(1000),
+CREATE TABLE ServiceDetail(
+serviceID INT PRIMARY KEY auto_increment,
+parentServcieID INT, 
+servieName VARCHAR(100),
+seviceVARCHAR(1000),
 LOAN_DESC VARCHAR(500)
 
 );
 
 CREATE TABLE LOAN_DOC(
 	REQ_ID INT PRIMARY KEY,
-    LOAN_TYPE INT,
+  LOAN_TYPE INT,
 	DOC_NAME VARCHAR(100),
 	DOC_DESC VARCHAR(500)
     
@@ -69,3 +80,7 @@ CREATE TABLE POST_DOC_REQ(
     DOC_NAME VARCHAR(200),
     PUPSE_DESC VARCHAR(500)
 )
+
+
+INSERT INTO `branch_operation` (`serviceName`, `serviceDescritpyion`, `serviceIconPath`, `serviceCreateTime`, `serviceCreator`) VALUES ('credit Operations', 'credit Operation description @ Branch', 'service/loan.png', current_timestamp(), '12');
+INSERT INTO `Document`( `documentName`, `docuemntDescription`, `docuemntPath`, `documentImagePath`, `isPublic`, `docuemntCategory`, `uploadDate` ) VALUES( 'CAO', 'Customer Account Operations', 'bank/cao.pd', 'coop.jpg', '1', 'bank', '2022-08-30' )
